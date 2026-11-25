@@ -4,7 +4,7 @@
 
 - Họ tên: Vũ Quang Thanh
 - MSSV: 2A202603736
-- Email: quangthanh2252@gmail.com
+- Email: 26ai.thanhvq@vinuni.edu.vn
 - Vai trong nhóm: Người gắn nhãn 1 (Evaluation & Pilot Engineer — Member 3: nhiệm vụ C, D1–D3)
 
 ## 2. Phần việc phụ trách
