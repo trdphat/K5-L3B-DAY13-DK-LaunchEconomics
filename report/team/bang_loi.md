@@ -37,7 +37,7 @@ Phân bố bộ nhãn 1: Do người dùng 4 ca (1, 6, 9, 14) · Hệ thống 5 
 
 ## Quy tắc phân biệt cho các ca không trùng
 
-Quy tắc tạm áp dụng khi gắn nhãn; sẽ bổ sung một câu cho mỗi ca lệch sau khi so với bộ nhãn M4.
+Hai bộ nhãn trùng 20/20 nên không có ca lệch. Các quy tắc dưới đây giải thích vì sao các ca dễ lẫn được gắn nhãn như hiện tại, dùng khi hội đồng hỏi lại.
 
 - **Ca 1, 6, 9, 14 là do người dùng, không phải hệ thống:** gốc lỗi là khách nhập sai hoặc chọn sai mục. Việc trợ lý không gợi ý cách sửa nằm ở cột khắc phục, không đổi nhãn.
 - **Ca 2, 7, 8, 15, 20 là hệ thống, không phải ngầm:** sai đã lộ ra (ngân hàng trả lỗi, khách mở lại, nhân viên bắt được, bản chính sách không có điều 7.2, hoàn trùng bị phát hiện). Ngầm chỉ dùng khi không ai nhận ra cho tới lúc kiểm tra.

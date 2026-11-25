@@ -24,9 +24,9 @@
 ## 4. Bằng chứng
 
 - Nhánh `feat/evaluation-pilot`: `src/lab13.py` (vùng nhiệm vụ D), `report/team/bang_loi.md`, `report/team/pilot_plan.yaml`.
-- Commit `59e2d1b` (code nhiệm vụ D và hồ sơ C) trên nhánh `feat/evaluation-pilot`; PR đang mở tại repo nhóm.
+- Commit `59e2d1b` (code nhiệm vụ D và hồ sơ C) và commit bổ sung báo cáo cá nhân trên nhánh `feat/evaluation-pilot`; PR #4 đã được merge vào `main`.
 - Kiểm chứng local: `python3 -c "import lab13; print(lab13.chay_D())"` in đúng 1.251 / 2,48 / 3.103 / 42 / 1.000 / 300 / 299 / 6,96; `chay_D3()` in 4,25% và 3,97%; `yaml.safe_load` đọc được và `grep '?'` ngoài dòng chú thích không in gì.
-- Bộ nhãn 1 gắn độc lập trước khi trao đổi; cột nhãn người 2 và tỉ lệ đồng thuận chờ bộ nhãn độc lập của M4 (không tự ghép hoặc bịa).
+- Bộ nhãn 1 gắn độc lập trước khi trao đổi; bộ nhãn 2 do M4 gắn độc lập, đối chiếu đạt đồng thuận 20/20 = 100% (không sửa bộ nhãn sau khi so).
 
 ## 5. Công cụ AI đã dùng
 
