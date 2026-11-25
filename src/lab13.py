@@ -12,6 +12,7 @@ Tổ chức file (để 4 người làm song song, mỗi người chỉ sửa v�
 """
 import math
 import sys
+from statistics import NormalDist
 
 import pandas as pd
 
@@ -244,14 +245,97 @@ def chay_B(runs, reqs):
     return None
 
 
-# ---------- Nhiệm vụ D · Cỡ mẫu (M3) ----------
+# ---------- Nhiệm vụ D · Cỡ mẫu và kế hoạch pilot (M3) ----------
+# TODO CP4 · Nhiệm vụ D (M3): D1 năm câu cỡ mẫu; D3 tỉ lệ mở lại hiện tại trước khi đặt luật an toàn.
+ICC_MAC_DINH = 0.02
+BASELINE_PILOT = 0.70
+MDE_PILOT = 0.05
+MDE_CHAP_NHAN = 0.06
+
+
+def _so_vn(x, nd=0):
+    """Định dạng số kiểu Việt Nam (1.251 · 6,96) cho phần in của nhiệm vụ D."""
+    s = f'{x:,.{nd}f}'
+    return s.replace(',', '_').replace('.', ',').replace('_', '.')
+
+
+def co_mau_hai_ti_le(p1, p2, alpha=0.05, power=0.8):
+    """Cỡ mẫu MỖI NHÓM khi so hai tỉ lệ (công thức chuẩn, z lấy chính xác).
+    Tương đương statsmodels.stats.power.NormalIndPower với effect_size = proportion_effectsize(p2, p1)."""
+    if not (0 < p1 < 1 and 0 < p2 < 1):
+        raise ValueError('p1, p2 phải nằm trong (0, 1)')
+    if p1 == p2:
+        raise ValueError('p1 và p2 phải khác nhau')
+    z_alpha = NormalDist().inv_cdf(1 - alpha / 2)
+    z_beta = NormalDist().inv_cdf(power)
+    p_bar = (p1 + p2) / 2
+    tu = (z_alpha * math.sqrt(2 * p_bar * (1 - p_bar))
+          + z_beta * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2)))
+    return math.ceil(tu ** 2 / (p2 - p1) ** 2)
+
+
+def he_so_thiet_ke(m, icc=ICC_MAC_DINH):
+    """Hệ số thiết kế khi chia theo cụm: DE = 1 + (m - 1) × ICC."""
+    return 1 + (m - 1) * icc
+
+
+def co_mau_hieu_dung(c, m, icc=ICC_MAC_DINH):
+    """Cỡ mẫu hiệu dụng khi chia theo cụm: c × m / DE, luôn nhỏ hơn c / ICC."""
+    return c * m / he_so_thiet_ke(m, icc)
+
+
+def so_yeu_cau_moi_cum(n_hieu_dung, c, icc=ICC_MAC_DINH):
+    """Số yêu cầu tối thiểu mỗi cụm để cỡ mẫu hiệu dụng đạt n_hieu_dung.
+    Giải c × m / (1 + (m - 1) × ICC) ≥ n  →  m ≥ n(1 - ICC) / (c - n × ICC).
+    Câu e: 859 × 0,98 / (20 - 859 × 0,02) = 298,5 → 299."""
+    if n_hieu_dung * icc >= c:
+        raise ValueError('Số cụm quá ít so với cỡ mẫu hiệu dụng cần có')
+    return math.ceil(n_hieu_dung * (1 - icc) / (c - n_hieu_dung * icc))
+
+
 def chay_D():
-    """TODO CP4 · Nhiệm vụ D1 (M3): năm câu a–e về cỡ mẫu.
-    Gợi ý của file khởi đầu:
-      from statsmodels.stats.proportion import proportion_effectsize
-      from statsmodels.stats.power import NormalIndPower"""
-    print('\n=== D1 · Cỡ mẫu: chưa làm (M3 phụ trách, TODO CP4) ===')
-    return None
+    """D1 · In năm câu cỡ mẫu và trả về dict để đối chiếu."""
+    n_5_diem = co_mau_hai_ti_le(BASELINE_PILOT, BASELINE_PILOT + MDE_PILOT)
+    n_6_diem = co_mau_hai_ti_le(BASELINE_PILOT, BASELINE_PILOT + MDE_CHAP_NHAN)
+    de_75 = he_so_thiet_ke(75)
+    n_theo_75 = math.ceil(n_5_diem * de_75)
+    nguoi_moi_nhom = math.ceil(n_theo_75 / 75)
+    toi_da_20_nguoi = 20 / ICC_MAC_DINH
+    toi_da_6_depot = 6 / ICC_MAC_DINH
+    m_6_diem = so_yeu_cau_moi_cum(n_6_diem, 20)
+    de_6_diem = he_so_thiet_ke(m_6_diem)
+
+    print('\n=== D1 · Cỡ mẫu (baseline 0,70; +5 điểm; alpha 0,05; power 0,8; ICC 0,02) ===')
+    print(f'a) Chia theo yêu cầu: {_so_vn(n_5_diem)} yêu cầu mỗi nhóm')
+    print(f'b) Theo nhân viên, m = 75: DE = {_so_vn(de_75, 2)}; {_so_vn(n_theo_75)} yêu cầu mỗi nhóm '
+          f'= {nguoi_moi_nhom} người mỗi nhóm → cần {2 * nguoi_moi_nhom} người > 40: không đủ người')
+    print(f'c) 20 nhân viên mỗi nhóm: tối đa {_so_vn(toi_da_20_nguoi)} < {_so_vn(n_5_diem)}: không đạt mức chênh 5 điểm')
+    print(f'd) 6 depot mỗi nhóm: tối đa {_so_vn(toi_da_6_depot)}: loại')
+    print(f'e) Mức chênh 6 điểm ({_so_vn(n_6_diem)} mỗi nhóm), 20 nhân viên mỗi nhóm: '
+          f'm ≥ {m_6_diem} yêu cầu mỗi người (DE = {_so_vn(de_6_diem, 2)}; '
+          f'{_so_vn(20 * m_6_diem)} yêu cầu mỗi nhóm; power ở mức 5 điểm còn 0,64)')
+    return dict(n_5_diem=n_5_diem, n_6_diem=n_6_diem, de_75=de_75, n_theo_75=n_theo_75,
+                nguoi_moi_nhom=nguoi_moi_nhom, toi_da_20_nguoi=toi_da_20_nguoi,
+                toi_da_6_depot=toi_da_6_depot, m_6_diem=m_6_diem, de_6_diem=de_6_diem)
+
+
+def ti_le_mo_lai(reqs, loai=None):
+    """Tỉ lệ yêu cầu mở lại trong 7 ngày (mo_lai_trong_7_ngay = 1) của đợt chạy thử.
+    Trả về (số ca, tổng số yêu cầu, tỉ lệ)."""
+    du_lieu = reqs if loai is None else reqs[reqs['loai'].isin(loai)]
+    so_ca = int((du_lieu['mo_lai_trong_7_ngay'] == 1).sum())
+    return so_ca, len(du_lieu), so_ca / len(du_lieu)
+
+
+def chay_D3(reqs):
+    """D3 · In tỉ lệ mở lại hiện tại (toàn mẫu và phạm vi pilot) trước khi chốt ngưỡng an toàn."""
+    ca, tong, ti_le = ti_le_mo_lai(reqs)
+    ca_pv, tong_pv, ti_le_pv = ti_le_mo_lai(reqs, ['noi_dia', 'hang_nang'])
+    print('\n=== D3 · Tỉ lệ mở lại trong 7 ngày của đợt chạy thử (dữ liệu giả lập) ===')
+    print(f'Toàn mẫu: {ca}/{tong} = {_so_vn(ti_le * 100, 2)}%')
+    print(f'Phạm vi noi_dia + hang_nang: {ca_pv}/{tong_pv} = {_so_vn(ti_le_pv * 100, 2)}%')
+    print('Ngưỡng tuyệt đối 3% sẽ dừng pilot ngay tuần đầu → dùng chênh +2 điểm so với đối chứng, kèm trần 6%')
+    return dict(ca=ca, tong=tong, ti_le=ti_le, ca_pv=ca_pv, tong_pv=tong_pv, ti_le_pv=ti_le_pv)
 
 
 # ---------- Nhiệm vụ E · Tính thử chỉ số (M4) ----------
@@ -289,4 +373,5 @@ if __name__ == '__main__':
     ket_qua_A = chay_A(runs, reqs)
     ket_qua_B = chay_B(runs, reqs)
     ket_qua_D = chay_D()
+    ket_qua_D3 = chay_D3(reqs)
     ket_qua_E = chay_E(reqs)
