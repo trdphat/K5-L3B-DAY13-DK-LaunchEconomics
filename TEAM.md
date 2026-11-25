@@ -55,3 +55,32 @@ Sao chép mục dưới đây cho từng thành viên.
 ### Bằng chứng
 
 - Nhánh `feat/metrics-launch`: `src/lab13.py` (hàm `tinh_chi_so_e1`), `report/team/chi_so.md` (phần E1 & danh sách event), `report/team/ho_so_launch_v0.md`, `report/team/group_report.md`, `report/team/2A202603743_HoAnLoc.md`.
+
+## NguyenMinhNhan-2A202603723
+
+### Phần việc phụ trách
+
+- Thực hiện phân tích độ nhạy chi phí B1–B4 trong `src/lab13.py` và `report/team/bang_chi_phi.md`.
+- Phân tích rủi ro kinh tế E2 trong `report/team/chi_so.md`.
+- Đảm nhiệm vai trò người kiểm số (Cost & Risk Analyst), đối chiếu công thức, số liệu và kiểm tra tính nhất quán giữa code, bảng chi phí và hồ sơ Launch v0.
+- Kiểm tra kết quả tích hợp và chạy thử toàn bộ chương trình Lab 13.
+
+### Đóng góp cụ thể
+
+- **B1:** Phân tích 9 kịch bản thay đổi chi phí, xác định chi phí làm lại có tác động lớn nhất (+51,8%).
+- **B2:** Phân tích kịch bản kết hợp giá token và tỉ lệ xem lại tăng gấp đôi (+46,3%); xác định ba yếu tố nhạy nhất: làm lại (+51,8%), xem lại (+40,7%) và lương nhân viên (+23,1%).
+- **B3:** Xác định giới hạn 2 lần chạy giúp tối ưu chi phí cả hệ thống (6.901.220 đ), giảm 85 yêu cầu cần nhân viên xử lý so với giới hạn 1 lần.
+- **B4:** Tính chi phí khi xem lại 100% (11.743 đ và 12.415 đ/việc), xác định ngưỡng thời gian xem lại hòa vốn tương ứng.
+- **E2:** Xây dựng bảng 4 rủi ro kinh tế, đầy đủ tác động định lượng, dấu hiệu theo dõi, hành động khắc phục, vai trò phụ trách và công thức đối chiếu; phân biệt rõ chi phí cố định, chi phí biến đổi và số liệu `simulated`.
+- Đối chiếu số liệu giữa `bang_chi_phi.md`, `chi_so.md` và `ho_so_launch_v0.md`; xử lý merge conflict phần E2, bảo toàn E1 và danh sách event của M4.
+- Chạy thành công toàn bộ `src/lab13.py`, xác nhận ba phép thử A1 đạt và kết quả tính toán A, B, D, E1 khớp với báo cáo.
+
+### Bằng chứng
+- Nhánh `feat/sensitivity-analysis`: `src/lab13.py`
+  (hàm `chay_B`, B1–B4), `report/team/bang_chi_phi.md`
+  (B1–B4), `report/team/chi_so.md` (E2).
+- Đối chiếu số liệu kinh tế trong
+  `report/team/ho_so_launch_v0.md`.
+- Chạy thành công toàn bộ `src/lab13.py`,
+  kết quả tính toán khớp với báo cáo.
+- `report/team/2A202603723_NguyenMinhNhan.md`.
