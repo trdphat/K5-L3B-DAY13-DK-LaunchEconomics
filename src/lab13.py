@@ -423,13 +423,6 @@ def chay_D3(reqs):
 
 
 # ---------- Nhiệm vụ E · Tính thử chỉ số (M4) ----------
-def chay_E(reqs):
-    """TODO CP5 · Nhiệm vụ E1 (M4): tính thử chỉ số chính, tỉ lệ bỏ qua gợi ý, tỉ lệ lỗi lọt đến khách."""
-    print('\n=== E1 · Chỉ số: chưa làm (M4 phụ trách, TODO CP5) ===')
-    return None
-
-
-# ---------- Nhiệm vụ E1 · Đặc tả chỉ số (Member 4) ----------
 def tinh_chi_so_e1(reqs):
     """Tính thử ba chỉ số E1 trên mẫu 1.200 yêu cầu (đọc bằng keep_default_na=False)."""
     chinh_num = int(((reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)).sum())
@@ -445,6 +438,16 @@ def tinh_chi_so_e1(reqs):
         an_toan_num=an_toan_num,
         an_toan=an_toan_num / len(reqs),
     )
+
+
+def chay_E(reqs):
+    """CP5 · Nhiệm vụ E1 (M4): tính thử chỉ số chính, tỉ lệ bỏ qua gợi ý, tỉ lệ lỗi lọt đến khách."""
+    e1 = tinh_chi_so_e1(reqs)
+    print('\n=== E1 · Chỉ số trong đợt chạy thử (chưa có nhóm đối chứng) ===')
+    print(f"Chính (% đóng 24h & không mở lại 7 ngày): {pt(e1['chinh'], 2)} ({e1['chinh_num']}/{len(reqs)})")
+    print(f"Dùng  (tỉ lệ bỏ qua gợi ý sua + bo):      {pt(e1['bo_qua'], 2)} ({e1['bo_qua_num']}/{e1['xem_num']})")
+    print(f"An toàn (tỉ lệ mở lại trong 7 ngày):      {pt(e1['an_toan'], 2)} ({e1['an_toan_num']}/{len(reqs)})")
+    return e1
 
 
 if __name__ == '__main__':

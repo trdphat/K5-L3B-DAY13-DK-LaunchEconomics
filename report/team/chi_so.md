@@ -40,9 +40,10 @@ Mỗi event đều gắn `trace_id` để nối trực tiếp với trace của 
 
 ## E2 · Rủi ro kinh tế
 
-Ít nhất hai dòng, số lấy từ bảng độ nhạy (`bang_chi_phi.md`).
+Số lấy trực tiếp từ bảng độ nhạy và chi phí cố định (`bang_chi_phi.md`).
 
 | Rủi ro | Tác động đã tính | Dấu hiệu theo dõi | Hành động | Người phụ trách |
 | --- | --- | --- | --- | --- |
-| ... | ... | ... | ... | ... |
-| ... | ... | ... | ... | ... |
+| Số ca làm lại tăng gấp đôi | +51,8%, tăng từ 4.472 đ lên **6.787 đ/việc** (`simulated`) | Tỉ lệ ca `lam_lai` theo tuần vượt 7% (đợt chạy thử: 48/982 = 4,9% trong phạm vi `noi_dia` + `hang_nang`) | Thu hẹp phạm vi về `noi_dia`, rà 20 trace `staff_rework_completed` gần nhất để sửa lỗi gốc | PM trợ lý hoàn phí |
+| Phải xem lại 100% kéo dài | **11.743 đ = 0,98×** (9 phút làm lại) hoặc **12.415 đ = 1,03×** (15,3 phút theo dữ liệu, `simulated`) — không tiết kiệm hoặc đắt hơn nhân viên tự làm | Tỉ lệ yêu cầu có `staff_review_decision` vẫn > 50% ở cuối bước rollout `0.25`, hoặc phút xem lại trung bình > 4,8 phút | Áp dụng lộ trình giảm xem lại theo bậc khi tỉ lệ bỏ qua gợi ý (`sua` + `bo`) < 15% và rà giao diện để rút ngắn thời gian xem lại | Trưởng nhóm CSKH |
+| Khối lượng yêu cầu thấp hơn dự kiến | Chi phí cố định 40 triệu đ/tháng tăng từ **+1.185 đ/việc** (45.000 yc/tháng → 4.599 đ) lên **+2.370 đ/việc** khi khối lượng giảm một nửa (→ 5.784 đ, `simulated`) | Số việc thành công mỗi tuần thấp hơn 50% kế hoạch trong 2 tuần liên tiếp | Tạm dừng mở rộng quy mô pilot và đàm phán lại cấu trúc chi phí cố định | Giám đốc vận hành LogiX-VN |

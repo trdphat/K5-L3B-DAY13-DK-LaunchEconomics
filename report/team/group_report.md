@@ -22,7 +22,7 @@ Nhóm xây dựng bộ **hồ sơ launch v0** trình hội đồng **Gate 2a** c
 
 ## 4. Kết quả
 
-- **Kinh tế (`simulated`):** Chi phí mỗi việc thành công toàn mẫu **4.472 đ** (gấp 16,3× hoá đơn token+tool 274,7 đ/yc); chi phí cả hệ thống **5.865 đ/yc = 0,49×** so với nhân viên tự làm (12.000 đ). Trong phạm vi pilot `noi_dia` + `hang_nang`: **3.414 đ** (cộng cố định thành **4.599 đ** ở quy mô đầy đủ hoặc **5.784 đ** ở 50% khối lượng). Ba yếu tố nhạy nhất: số ca làm lại (+51,8%), tỉ lệ xem lại (+40,7%), lương nhân viên (+23,1%). Xem lại 100% làm chi phí tăng lên **11.743–12.414 đ** (`0,98×–1,03×`, `simulated`).
+- **Kinh tế (`simulated`):** Chi phí mỗi việc thành công toàn mẫu **4.472 đ** (gấp 16,3× hoá đơn token+tool 274,7 đ/yc); chi phí cả hệ thống **5.865 đ/yc = 0,49×** so với nhân viên tự làm (12.000 đ). Trong phạm vi pilot `noi_dia` + `hang_nang`: **3.414 đ** (cộng cố định thành **4.599 đ** ở quy mô đầy đủ hoặc **5.784 đ** ở 50% khối lượng). Ba yếu tố nhạy nhất: số ca làm lại (+51,8%), tỉ lệ xem lại (+40,7%), lương nhân viên (+23,1%). Xem lại 100% làm chi phí tăng lên **11.743–12.415 đ** (`0,98×–1,03×`, `simulated`).
 - **Chỉ số đợt chạy thử (chưa có đối chứng):** Chính **82,83%** (994/1.200); Dùng (bỏ qua gợi ý) **27,12%** (48/177); An toàn (mở lại 7 ngày) **4,25%** (51/1.200).
 - **Đề xuất Gate 2a:** **Go có điều kiện** cho pilot `noi_dia` + `hang_nang` (giới hạn 2 lần chạy) với 4 điều kiện cụ thể về khoá chống trùng sổ cái, đo thật thay cho `simulated`, lộ trình giảm xem lại và ký chấp nhận MDE 6 điểm.
 - **Kết quả duyệt chéo Gate 2a:** *(Cập nhật sau phiên duyệt chéo 17:00 tại lớp; phiếu nhóm chấm nhóm khác lưu tại [phieu_cham.md](phieu_cham.md)).*
