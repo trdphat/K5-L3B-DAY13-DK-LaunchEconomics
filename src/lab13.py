@@ -261,6 +261,24 @@ def chay_E(reqs):
     return None
 
 
+# ---------- Nhiệm vụ E1 · Đặc tả chỉ số (Member 4) ----------
+def tinh_chi_so_e1(reqs):
+    """Tính thử ba chỉ số E1 trên mẫu 1.200 yêu cầu (đọc bằng keep_default_na=False)."""
+    chinh_num = int(((reqs['dong_trong_24h'] == 1) & (reqs['mo_lai_trong_7_ngay'] == 0)).sum())
+    xem = reqs[reqs['duoc_xem_lai'] == 1]
+    bo_qua_num = int(xem['quyet_dinh_xem_lai'].isin(['sua', 'bo']).sum())
+    an_toan_num = int((reqs['mo_lai_trong_7_ngay'] == 1).sum())
+    return dict(
+        chinh_num=chinh_num,
+        chinh=chinh_num / len(reqs),
+        bo_qua_num=bo_qua_num,
+        xem_num=len(xem),
+        bo_qua=bo_qua_num / len(xem),
+        an_toan_num=an_toan_num,
+        an_toan=an_toan_num / len(reqs),
+    )
+
+
 if __name__ == '__main__':
     # In được tiếng Việt cả khi stdout là pipe trên Windows (mặc định cp1252)
     if hasattr(sys.stdout, 'reconfigure'):
