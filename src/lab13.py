@@ -238,11 +238,95 @@ def chay_A(runs, reqs):
 
 # ---------- Nhiệm vụ B · Bảng độ nhạy (M2) ----------
 def chay_B(runs, reqs):
-    """TODO CP2 · Nhiệm vụ B (M2): B1 9 kịch bản, B2 một cặp + xếp hạng, B3 giới hạn 1/2/3 lần
-    (chi phí cả hệ thống), B4 xem lại 100% cho noi_dia + hang_nang.
-    Mỗi kịch bản là một lần gọi mo_hinh(runs, reqs, **tham_so); lấy kết quả['cps']."""
-    print('\n=== B · Bảng độ nhạy: chưa làm (M2 phụ trách, TODO CP2) ===')
-    return None
+    """CP2: in B1–B4 và trả kết quả; mọi chi phí có giờ nhân viên mang nhãn simulated.
+    Tái sử dụng mo_hinh(), chỉ thay phút B4 trên bản sao, không sửa dữ liệu đầu vào.
+    """
+    goc = mo_hinh(runs, reqs)
+    kich_ban = [
+        ('Giá token gấp đôi', 'Giá token', dict(gia_vao=GIA_VAO * 2, gia_ra=GIA_RA * 2)),
+        ('Giá token giảm một nửa', 'Giá token', dict(gia_vao=GIA_VAO / 2, gia_ra=GIA_RA / 2)),
+        ('Tỉ lệ xem lại gấp đôi', 'Tỉ lệ xem lại', dict(he_so_xem_lai=2)),
+        ('Tỉ lệ xem lại giảm một nửa', 'Tỉ lệ xem lại', dict(he_so_xem_lai=0.5)),
+        ('Số ca làm lại gấp đôi', 'Số ca làm lại', dict(he_so_lam_lai=2)),
+        ('Số ca làm lại giảm một nửa', 'Số ca làm lại', dict(he_so_lam_lai=0.5)),
+        ('Lương nhân viên tăng 25%', 'Lương nhân viên', dict(luong_phut=LUONG_PHUT * 1.25)),
+        ('Chỉ cho chạy tối đa 2 lần', 'Giới hạn chạy', dict(max_lan_chay=2)),
+        ('Chỉ cho chạy 1 lần', 'Giới hạn chạy', dict(max_lan_chay=1)),
+    ]
+    b1 = []
+    anh_huong = {}
+    print('\n=== B1 · Đổi từng yếu tố ===')
+    print(f"Gốc A2: {so(goc['cps'])} đ/việc thành công [simulated]; chưa cộng chi phí cố định.")
+    for ten, yeu_to, tham_so in kich_ban:
+        m = mo_hinh(runs, reqs, **tham_so)
+        thay_doi = m['cps'] / goc['cps'] - 1
+        b1.append(dict(kich_ban=ten, yeu_to=yeu_to, tham_so=tham_so,
+                       mo_hinh=m, thay_doi=thay_doi))
+        # Mỗi yếu tố lấy biến động tuyệt đối lớn nhất trong các kịch bản B1 của nó.
+        if yeu_to not in anh_huong or abs(thay_doi) > abs(anh_huong[yeu_to]):
+            anh_huong[yeu_to] = thay_doi
+        dau = '+' if thay_doi >= 0 else ''
+        print(f"{ten:30s} {so(m['cps']):>8s} đ  {dau}{pt(thay_doi)} [simulated]")
+
+    cap = mo_hinh(runs, reqs, gia_vao=GIA_VAO * 2, gia_ra=GIA_RA * 2, he_so_xem_lai=2)
+    thay_doi_cap = cap['cps'] / goc['cps'] - 1
+    xep_hang = sorted(anh_huong.items(), key=lambda muc: abs(muc[1]), reverse=True)[:3]
+    print('\n=== B2 · Đổi một cặp và xếp hạng ===')
+    print(f"Token và xem lại cùng gấp đôi: {so(cap['cps'])} đ, +{pt(thay_doi_cap)} [simulated].")
+    print(f"Tác động cặp = {pt(b1[0]['thay_doi'])} + {pt(b1[2]['thay_doi'])} "
+          f"= {pt(thay_doi_cap)} vì mô hình cộng tuyến tính [simulated].")
+    print(' · '.join(f'{i}. {ten}: {pt(muc)}' for i, (ten, muc) in enumerate(xep_hang, 1))
+          + ' [simulated; theo mức thay đổi của các kịch bản B1].')
+
+    b3 = []
+    print('\n=== B3 · Giới hạn chạy lại ===')
+    print('Giới hạn | Tổng trợ lý [simulated] | Không thành công | Cả hệ thống [simulated] | CPS [simulated]')
+    for k in (1, 2, 3):
+        m = mo_hinh(runs, reqs, max_lan_chay=k)
+        khong_thanh_cong = len(reqs) - m['thanh_cong']
+        he_thong = m['tong'] + BASELINE * khong_thanh_cong
+        b3.append(dict(gioi_han=k, mo_hinh=m, khong_thanh_cong=khong_thanh_cong,
+                       he_thong=he_thong))
+        print(f"{k} lần | {so(m['tong'])} đ | {so(khong_thanh_cong)} | "
+              f"{so(he_thong)} đ | {so(m['cps'])} đ")
+    re_nhat = min(b3, key=lambda dong: dong['he_thong'])
+    cps_thap_nhat = min(b3, key=lambda dong: dong['mo_hinh']['cps'])
+    chenh_ca = cps_thap_nhat['khong_thanh_cong'] - re_nhat['khong_thanh_cong']
+    print(f"Cả hệ thống rẻ nhất: {re_nhat['gioi_han']} lần, {so(re_nhat['he_thong'])} đ; "
+          f"CPS thấp nhất: {cps_thap_nhat['gioi_han']} lần, "
+          f"{so(cps_thap_nhat['mo_hinh']['cps'])} đ [simulated].")
+    print(f"Giới hạn CPS thấp nhất để lại thêm {so(chenh_ca)} yêu cầu cho nhân viên.")
+
+    # B4: xem lại mọi yêu cầu có ít nhất một run ok, không đếm lặp request_id.
+    pv = reqs[reqs['loai'].isin(PHAM_VI_PILOT)].copy()
+    co_ok = pv['request_id'].isin(runs.loc[runs['status'] == 'ok', 'request_id'])
+    lam_lai = pv['ket_qua'] == 'lam_lai'
+    phut_lam_lai = reqs.loc[reqs['ket_qua'] == 'lam_lai', 'phut_lam_lai_simulated']
+    # Hướng dẫn B4 dùng trung bình toàn bộ ca lam_lai, làm tròn 1 chữ số: 15,3 phút.
+    trung_binh_lam_lai = round(float(phut_lam_lai.mean()), 1)
+    b4 = []
+    print(f"\n=== B4 · Xem lại 100%, {' + '.join(PHAM_VI_PILOT)} ===")
+    print(f"{so(len(pv))} yêu cầu; {so(co_ok.sum())} có run ok × 5 phút xem lại; "
+          f"{so(lam_lai.sum())} ca làm lại.")
+    print(f"Phút làm lại toàn mẫu: trung bình {so(trung_binh_lam_lai, 1)}, "
+          f"trung vị {so(phut_lam_lai.median(), 1)} [simulated].")
+    for ten, phut in [('Theo đề', 9), ('Theo trung bình dữ liệu (làm tròn 1 chữ số)', trung_binh_lam_lai)]:
+        pv['phut_xem_lai_simulated'] = co_ok.astype(float) * 5
+        pv['phut_lam_lai_simulated'] = lam_lai.astype(float) * phut
+        m = mo_hinh(runs, pv)
+        hoa_von_phut = ((BASELINE * m['thanh_cong'] - m['token'] - m['tool'] - m['lam_lai'])
+                        / (int(co_ok.sum()) * LUONG_PHUT))
+        b4.append(dict(kich_ban=ten, phut_lam_lai=phut, mo_hinh=m,
+                       so_voi_baseline=m['cps'] / BASELINE, hoa_von_phut=hoa_von_phut))
+        print(f"{ten}: làm lại {so(phut, 1)} phút/ca; token + tool {so(m['token'] + m['tool'])} đ; "
+              f"xem lại {so(m['xem_lai'])} đ; làm lại {so(m['lam_lai'])} đ [simulated].")
+        print(f"Tổng {so(m['tong'])} đ / {so(m['thanh_cong'])} việc = {so(m['cps'])} đ "
+              f"= {so(m['cps'] / BASELINE, 2)}× {so(BASELINE)} đ; "
+              f"xem lại hòa vốn ≤ {so(hoa_von_phut, 1)} phút [simulated].")
+
+    return {'goc_A2': goc, 'B1': b1,
+            'B2': dict(mo_hinh=cap, thay_doi=thay_doi_cap, xep_hang=xep_hang),
+            'B3': b3, 'B4': b4}
 
 
 # ---------- Nhiệm vụ D · Cỡ mẫu và kế hoạch pilot (M3) ----------
