@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Trương Đức Phát | 2A202603757 |       | trdphat | Người viết code (Cost Model Engineer — A1–A4, chấm chéo) |
+|   1 | Trương Đức Phát | 2A202603757 |  26ai.phattd@vinuni.edu.vn     | trdphat | Người viết code (Cost Model Engineer — A1–A4, chấm chéo) |
 |   2 | Nguyễn Minh Nhân | 2A202603723 | 26ai.nhannm@vinuni.edu.vn | uscalurn       | Người kiểm số (Cost & Risk Analyst — B1–B4, E2, QA số liệu) |
 |   3 | Vũ Quang Thanh | 2A202603736 | quangthanh2252@gmail.com |        | Người gắn nhãn 1 (Evaluation & Pilot Engineer — C, D1–D3) |
 |   4 | Hồ An Lộc | 2A202603743 |       |        | Người gắn nhãn 2 kiêm giữ hồ sơ (Metrics & Launch Engineer — E1, E3, tích hợp) |
