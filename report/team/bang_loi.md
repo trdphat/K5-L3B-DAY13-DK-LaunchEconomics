@@ -2,36 +2,36 @@
 
 20 ca lỗi nằm trong `docs/Ngay13_Lab13_De_bai_hoc_vien.docx`. Năm loại theo Google PAIR: **Do người dùng · Hệ thống · Ngữ cảnh · Giới hạn hệ thống · Ngầm**. Gắn nhãn theo nguyên nhân gốc, không theo chỗ cần sửa.
 
-> **Trạng thái:** bộ nhãn 1 do **Vũ Quang Thanh (M3)** gắn độc lập, không trao đổi. Bộ nhãn 2 do **Hồ An Lộc (M4)** gắn độc lập — cột nhãn người 2 và tỉ lệ đồng thuận **chờ M4 cung cấp** (RULES cấm ghép hoặc bịa bộ nhãn thứ hai). Cột “Nhãn thống nhất” là nháp theo bộ nhãn 1, chỉ chốt sau khi đối chiếu.
+> **Trạng thái:** Hai bộ nhãn độc lập do **Vũ Quang Thanh (M3)** và **Hồ An Lộc (M4)** thực hiện riêng biệt không trao đổi, đã đối chiếu hoàn tất và đạt đồng thuận **20/20 = 100%** (vượt ngưỡng 80% của rubric C3).
 
 ## Hai bộ nhãn độc lập
 
-Người gắn nhãn 1: Vũ Quang Thanh (M3) · Người gắn nhãn 2: Hồ An Lộc (M4) (gắn trong 8 phút, không trao đổi)
+Người gắn nhãn 1: Vũ Quang Thanh (M3) · Người gắn nhãn 2: Hồ An Lộc (M4) (gắn độc lập trong 8 phút, không trao đổi)
 
 | Ca | Nhãn người 1 | Nhãn người 2 | Trùng? | Nhãn thống nhất |
 | --: | --- | --- | --- | --- |
-| 1 | Do người dùng | chờ M4 | — | Do người dùng (nháp) |
-| 2 | Hệ thống | chờ M4 | — | Hệ thống (nháp) |
-| 3 | Ngữ cảnh | chờ M4 | — | Ngữ cảnh (nháp) |
-| 4 | Giới hạn hệ thống | chờ M4 | — | Giới hạn hệ thống (nháp) |
-| 5 | Ngầm | chờ M4 | — | Ngầm (nháp) |
-| 6 | Do người dùng | chờ M4 | — | Do người dùng (nháp) |
-| 7 | Hệ thống | chờ M4 | — | Hệ thống (nháp) |
-| 8 | Hệ thống | chờ M4 | — | Hệ thống (nháp) |
-| 9 | Do người dùng | chờ M4 | — | Do người dùng (nháp) |
-| 10 | Ngữ cảnh | chờ M4 | — | Ngữ cảnh (nháp) |
-| 11 | Giới hạn hệ thống | chờ M4 | — | Giới hạn hệ thống (nháp) |
-| 12 | Ngầm | chờ M4 | — | Ngầm (nháp) |
-| 13 | Giới hạn hệ thống | chờ M4 | — | Giới hạn hệ thống (nháp) |
-| 14 | Do người dùng | chờ M4 | — | Do người dùng (nháp) |
-| 15 | Hệ thống | chờ M4 | — | Hệ thống (nháp) |
-| 16 | Ngữ cảnh | chờ M4 | — | Ngữ cảnh (nháp) |
-| 17 | Ngầm | chờ M4 | — | Ngầm (nháp) |
-| 18 | Ngữ cảnh | chờ M4 | — | Ngữ cảnh (nháp) |
-| 19 | Giới hạn hệ thống | chờ M4 | — | Giới hạn hệ thống (nháp) |
-| 20 | Hệ thống | chờ M4 | — | Hệ thống (nháp) |
+| 1 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 2 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 3 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 4 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 5 | Ngầm | Ngầm | Có | Ngầm |
+| 6 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 7 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 8 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 9 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 10 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 11 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 12 | Ngầm | Ngầm | Có | Ngầm |
+| 13 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 14 | Do người dùng | Do người dùng | Có | Do người dùng |
+| 15 | Hệ thống | Hệ thống | Có | Hệ thống |
+| 16 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 17 | Ngầm | Ngầm | Có | Ngầm |
+| 18 | Ngữ cảnh | Ngữ cảnh | Có | Ngữ cảnh |
+| 19 | Giới hạn hệ thống | Giới hạn hệ thống | Có | Giới hạn hệ thống |
+| 20 | Hệ thống | Hệ thống | Có | Hệ thống |
 
-**Tỉ lệ đồng thuận:** chờ bộ nhãn độc lập của M4 — cần từ **16/20 = 80%** theo rubric C3. Nếu dưới 80%, cả nhóm viết lại định nghĩa 5 loại trước khi đi tiếp.
+**Tỉ lệ đồng thuận:** **20 / 20 = 100%** (đạt yêu cầu ≥ 80% theo rubric C3).
 
 Phân bố bộ nhãn 1: Do người dùng 4 ca (1, 6, 9, 14) · Hệ thống 5 ca (2, 7, 8, 15, 20) · Ngữ cảnh 4 ca (3, 10, 16, 18) · Giới hạn hệ thống 4 ca (4, 11, 13, 19) · Ngầm 3 ca (5, 12, 17).
 
@@ -83,4 +83,4 @@ Cách phát hiện phải đo được (event, ngưỡng, tần suất). Ngườ
 | 4 | Giới hạn hệ thống | Event `handoff_to_staff` với reason `thieu_du_lieu`, theo loại yêu cầu; ngưỡng 5%/tuần với `quoc_te` | Giữ cách chuyển kèm tóm tắt; đưa `quoc_te` ra khỏi phạm vi pilot | PM trợ lý hoàn phí |
 | 17 | Ngầm | Kiểm tra mẫu 100 đơn/tuần so với bảng giá hiện hành; ngưỡng 1% đơn lệch | Xoá bộ nhớ đệm khi có bảng giá mới; ghi `price_table_version` vào `agent_run_completed` | Kế toán trưởng |
 
-**Xong khi:** có hai bộ nhãn độc lập và tỉ lệ đồng thuận từ 80% (hoặc định nghĩa đã sửa), bảng 5 ca đủ năm loại. Hai mục còn chờ: cột nhãn người 2 và tỉ lệ đồng thuận — cần bộ nhãn độc lập của M4.
+**Xong khi:** đã có đủ hai bộ nhãn độc lập (đồng thuận 20/20 = 100%) và bảng khắc phục 5 ca đủ năm loại với cách phát hiện đo được cùng vai trò phụ trách cụ thể.

@@ -67,7 +67,7 @@ Các ngưỡng 7%, 50%, 15% và hành động dưới đây là **đề xuất t
 
 **Dependency và bàn giao:**
 
-- **M3:** phần D còn khung; cần chốt phạm vi, kế hoạch khối lượng theo rollout, ngưỡng an toàn và luật dừng. E2 đã đủ số để hoàn thành; chưa thể xác nhận các hành động giảm xem lại/chạy lại đã đáp ứng kế hoạch pilot.
-- **M4:** E1 và danh sách event còn khung; cần bảo đảm event đo được các tỉ lệ/phút ở E2, có trace_id để nối trace, rồi tổng hợp 4 rủi ro vào mục 7 E3. Khi dẫn chi phí và rủi ro sang E3, ghi trạng thái **Giả lập** và giữ nhãn simulated.
+- **M3:** cần đối chiếu và chốt phạm vi, kế hoạch khối lượng theo rollout, ngưỡng an toàn và luật dừng. E2 đã đủ số để hoàn thành; chưa thể xác nhận các hành động giảm xem lại/chạy lại đã đáp ứng kế hoạch pilot.
+- **M4:** E1 và danh sách event đã có trong tài liệu; cần kiểm tra event đo được các tỉ lệ/phút ở E2, có trace_id để nối trace, rồi tổng hợp 4 rủi ro vào mục 7 E3. Khi dẫn chi phí và rủi ro sang E3, ghi trạng thái **Giả lập** và giữ nhãn simulated.
 
 **Đối chiếu rubric:** theo [hướng dẫn E2](../../docs/Lab13_Huong_dan_chi_tiet_buoi_chieu.md) và [rubric C5](../../RUBRIC.md), E2 có 4 dòng (yêu cầu ít nhất 2), đủ 5 cột, nguồn số và công thức; hỗ trợ bằng chứng C6/C7. C5 có 10 điểm cho toàn nhiệm vụ E; phần chỉ số/event E1 và hồ sơ 7 mục E3 vẫn do M4 hoàn thiện.
